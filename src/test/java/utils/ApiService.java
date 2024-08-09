@@ -70,4 +70,19 @@ public class ApiService {
         response.getBody().prettyPrint();
         return response;
     }
+
+    public static Response deleteUser(String userId) throws IOException {
+        Response response = (Response) RestAssured.given()
+                .log()
+                .all()
+                .header("Content-Type","application/json")
+                .header("Authorization", "Bearer " + Auth.getTokenFromPropertiesFile())
+                .baseUri(Constants.baseUrl)
+                .basePath(Constants.endpointDelete)
+                .delete(userId).then().extract();
+
+//        LocalData.localData.setUserResponse(new Gson().fromJson(response.asPrettyString(), User.class));
+        response.getBody().prettyPrint();
+        return response;
+    }
 }
