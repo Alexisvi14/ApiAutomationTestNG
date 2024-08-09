@@ -66,7 +66,7 @@ public class ApiService {
                 .basePath(Constants.endpointPut)
                 .put().then().extract();
 
-        LocalData.localData.setUserResponse(new Gson().fromJson(response.asPrettyString(), User.class));
+//        LocalData.localData.setUserResponse(new Gson().fromJson(response.asPrettyString(), User.class));
         response.getBody().prettyPrint();
         return response;
     }
