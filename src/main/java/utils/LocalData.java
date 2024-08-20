@@ -1,20 +1,31 @@
 package utils;
 
+import model.Post;
 import model.User;
 
 import java.util.List;
 
 public class LocalData {
-    public static LocalData localData = new LocalData();
+    private static LocalData instance;
     private User userResponse;
     private List<User> userResponses;
 
-    public static LocalData getLocalData() {
-        return localData;
+    private Post postResponse;
+
+    private List<Post> postResponses;
+
+    private LocalData() {
     }
 
-    public static void setLocalData(LocalData localData) {
-        LocalData.localData = localData;
+    public static LocalData getInstance() {
+        if (instance == null) {
+            synchronized (LocalData.class) {
+                if (instance == null) {
+                    instance = new LocalData();
+                }
+            }
+        }
+        return instance;
     }
 
     public User getUserResponse() {
@@ -31,5 +42,21 @@ public class LocalData {
 
     public void setUserResponses(List<User> userResponses) {
         this.userResponses = userResponses;
+    }
+
+    public Post getPostResponse() {
+        return postResponse;
+    }
+
+    public void setPostResponse(Post postResponse) {
+        this.postResponse = postResponse;
+    }
+
+    public List<Post> getPostResponses() {
+        return postResponses;
+    }
+
+    public void setPostResponses(List<Post> postResponses) {
+        this.postResponses = postResponses;
     }
 }

@@ -6,13 +6,14 @@ import java.util.Properties;
 
 public class Auth {
     private static String bearerToken = null;
-    public static String getTokenFromPropertiesFile(){
+
+    public static String getTokenFromPropertiesFile() {
         if (bearerToken == null) {
-            Properties properties= new Properties();
-            InputStream inputStream=Auth.class.getClassLoader().getResourceAsStream("api.properties");
+            Properties properties = new Properties();
+            InputStream inputStream = Auth.class.getClassLoader().getResourceAsStream("api.properties");
             try {
                 properties.load(inputStream);
-                bearerToken=properties.getProperty("token");
+                bearerToken = properties.getProperty("token");
             } catch (IOException e) {
                 throw new RuntimeException(e.getMessage());
             }
